@@ -83,3 +83,5 @@ Dedicated Request classes (`StoreCampaignRequest`) provide:
 ```bash
 git clone https://github.com/mahmudul007/simple-email-campeighn-manager.git
 cd simple-campaign-manager
+php artisan migrate
+php artisan db:seed 
