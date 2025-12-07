@@ -8,10 +8,16 @@ use Inertia\Inertia;
 use App\Models\Campaign;
 use App\Models\Contact;
 use App\Services\CampaignService;
-use Illuminate\Support\Facades\Request;
 
 class CampaignController extends Controller
 {
+
+    private $campaignService;
+    public function __construct(CampaignService $campaignService)
+    {
+        $this->campaignService = $campaignService;
+    }
+
     public function index()
     {
         $campaigns = Campaign::with('recipients.contact')
@@ -35,8 +41,7 @@ class CampaignController extends Controller
 
         $data = $request->validated();
 
-        $campaignService = new CampaignService();
-        $campaignService->sendCampaignEmail($data);
+        $this->campaignService->sendCampaignEmail($data);
 
         return redirect()->route('campaigns.index')->with('success', 'Campaign queued!');
     }
