@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Campaign;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCampaignRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreCampaignRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,6 @@ class StoreCampaignRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return Campaign::rules();
     }
 }

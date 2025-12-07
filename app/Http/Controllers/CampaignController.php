@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCampaignRequest;
 use App\Jobs\SendCampaignEmail;
 use Inertia\Inertia;
 use App\Models\Campaign;
 use App\Models\Contact;
+use App\Services\CampaignService;
 use Illuminate\Support\Facades\Request;
 
 class CampaignController extends Controller
@@ -26,26 +28,13 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreCampaignRequest $request)
     {
-        $data = $request->validate([
-            'subject' => 'required|string|max:255',
-            'body' => 'required|string',
-            'recipients' => 'required|array',
-            'recipients.*' => 'exists:contacts,id',
-        ]);
 
-        $campaign = Campaign::create([
-            'subject' => $data['subject'],
-            'body' => $data['body'],
-        ]);
+        $data = $request->validated();
 
-        foreach ($data['recipients'] as $contactId) {
-            $recipient = $campaign->recipients()->create([
-                'contact_id' => $contactId,
-            ]);
-            SendCampaignEmail::dispatch($recipient);
-        }
+        $campaignService = new CampaignService();
+        $campaignService->sendCampaignEmail($data);
 
         return redirect()->route('campaigns.index')->with('success', 'Campaign queued!');
     }
