@@ -21,8 +21,8 @@ class SendCampaignEmail implements ShouldQueue
     public function handle()
     {
         try {
-            // fake sending
-            sleep(1); // simulate delay
+            
+            sleep(1); // simulate delay - for testing purpose
             $this->recipient->status = 'sent';
             $this->recipient->save();
         } catch (\Exception $e) {

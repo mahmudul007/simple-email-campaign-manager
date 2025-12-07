@@ -9,4 +9,9 @@ class Contact extends Model
 {
     /** @use HasFactory<\Database\Factories\ContactFactory> */
     use HasFactory;
+    protected $table = 'contacts';
+    public function recipients()
+    {
+        return $this->belongsToMany(CampaignRecipient::class);
+    }
 }

@@ -23,10 +23,7 @@ class ContactController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return Inertia::render('Contacts/Create');
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -40,22 +37,12 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contact $contact)
-    {
-        return Inertia::render('Contacts/Show', [
-            'contact' => $contact,
-        ]);
-    }
+    public function show(Contact $contact) {}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Contact $contact)
-    {
-        return Inertia::render('Contacts/Edit', [
-            'contact' => $contact,
-        ]);
-    }
+    public function edit(Contact $contact) {}
 
     /**
      * Update the specified resource in storage.
@@ -70,8 +57,5 @@ class ContactController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Contact $contact)
-    {
-        $contact->delete();
-        return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully!');
-    }
+    {}
 }

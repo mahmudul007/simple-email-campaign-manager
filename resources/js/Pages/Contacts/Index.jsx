@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 import {
   Table,
   TableBody,
@@ -44,41 +44,31 @@ export default function Index({ contacts }) {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between">
                             <CardTitle>All Contacts</CardTitle>
-                            <Button disabled>Create Contact (Seeded)</Button>
                         </CardHeader>
                         <CardContent>
                             <div className="rounded-md border">
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead className="w-[50px]">
-                                                <Checkbox
-                                                    checked={contacts.length > 0 && selectedContacts.length === contacts.length}
-                                                    onCheckedChange={toggleSelectAll}
-                                                />
-                                            </TableHead>
+                                             <TableHead>ID</TableHead>
                                             <TableHead>Name</TableHead>
                                             <TableHead>Email</TableHead>
-                                            <TableHead className="text-right">ID</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
                                         {contacts.map((contact) => (
                                             <TableRow key={contact.id} data-state={selectedContacts.includes(contact.id) && "selected"}>
-                                                <TableCell>
-                                                    <Checkbox
-                                                        checked={selectedContacts.includes(contact.id)}
-                                                        onCheckedChange={(checked) => toggleSelect(contact.id, checked)}
-                                                    />
-                                                </TableCell>
-                                                <TableCell className="font-medium">{contact.name}</TableCell>
+                                              
+                                                
+                                                <TableCell className="font-medium">{contact.id}</TableCell>
+                                                <TableCell>{contact.name}</TableCell>
                                                 <TableCell>{contact.email}</TableCell>
-                                                <TableCell className="text-right">{contact.id}</TableCell>
+                                                
                                             </TableRow>
                                         ))}
                                         {contacts.length === 0 && (
                                             <TableRow>
-                                                <TableCell colSpan={4} className="h-24 text-center">
+                                                <TableCell colSpan={5} className="h-24 text-center">
                                                     No contacts found.
                                                 </TableCell>
                                             </TableRow>
