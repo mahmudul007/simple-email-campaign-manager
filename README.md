@@ -13,16 +13,16 @@ This project allows you to manage contacts, create email campaigns, and track em
 ### Contacts
 - Seed a list of contacts (name + email)
 - Display contacts in a table
-- Select recipients (single, multiple, select all)
 
 ### Campaigns
-- Create a campaign with subject and body (rich text or textarea)
-- Select recipients from the contact list
+- Create a campaign with subject and body
+- Select recipients from the contact list(single - multiple -all)
 - Queue emails for sending (simulated using Laravel jobs)
 
 ### Email Status Tracking
 - Track status per recipient: `pending`, `sent`, `failed`
 - View campaign history and per-campaign delivery results
+- I use here  simulate delay ,for testing purpose
 
 ### Architecture
 
